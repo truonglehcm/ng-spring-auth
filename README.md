@@ -39,8 +39,11 @@
 ##### 5. Open file app.constants.js and change<br>
     PUBLIC_RECAPTCHA_KEY : 'your puplic site key'
       
+### Build ###
+    mvn clean clean install
 ### Run ###
-* Right Click on project > Run As > Spring Boot App
+    mvn spring-boot:run
+* Go to http://localhost:8080
 * Login with admin role: <strong>username: admin, password: 123456</strong>
 * Login with user role: <strong>username: user, password: 123456</strong>
 

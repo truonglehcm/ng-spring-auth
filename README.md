@@ -14,14 +14,14 @@
 * [JWT Spring Security Demo](https://github.com/szerhusenBC/jwt-spring-security-demo)
 
 ### Requirements ###
-* Maven 3
-* Java 1.8 
-* Eclipse Neon 4.6.3+ installed STS (Spring Tool Suite)
+* Maven 3++
+* Java 1.8++ 
+* Eclipse Neon 4.6.3++ installed STS (Spring Tool Suite)
 
 ### Set up ###
 ##### 1. Config lombok #####
-    * Right Click <strong>lombok-1.16.16-sources.jar</strong> from <strong>Maven Dependencies > Run As > Java Application</strong>.
-    * Click button <strong>Install/Update</strong> from lombok console, then refresh project.
+* Right Click <strong>lombok-1.16.16-sources.jar</strong> from <strong>Maven Dependencies > Run As > Java Application</strong>.
+* Click button <strong>Install/Update</strong> from lombok console, then refresh project.
 ##### 2. Open file <strong>application-dev.properties</strong> and change #####
     spring.datasource.username=Your username db
     spring.datasource.password=Your password db

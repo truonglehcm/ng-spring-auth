@@ -22,3 +22,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+# Auto detect text files and perform LF normalization
+src/main/resources/static/* linguist-vendored

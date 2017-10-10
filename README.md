@@ -40,7 +40,7 @@
     PUBLIC_RECAPTCHA_KEY : 'your puplic site key'
       
 ### Build ###
-    mvn clean clean install
+    mvn clean install
 ### Run ###
     mvn spring-boot:run
 * Go to http://localhost:8080

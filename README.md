@@ -47,48 +47,48 @@
 ### Screeenshot ###
   * Home page:
   
-    ![alt text](https://github.com/truonglehcm/SpringJwtAngularjs/blob/master/src/main/resources/static/img/home.PNG)
+    ![alt text](https://github.com/truonglehcm/ng-spring-auth/blob/master/src/main/resources/static/img/home.PNG)
     
   * Post detail page:
   
-    ![alt text](https://github.com/truonglehcm/SpringJwtAngularjs/blob/master/src/main/resources/static/img/post_detail.PNG)
+    ![alt text](https://github.com/truonglehcm/ng-spring-auth/blob/master/src/main/resources/static/img/post_detail.PNG)
   
   * Login page:
   
-    ![alt text](https://github.com/truonglehcm/SpringJwtAngularjs/blob/master/src/main/resources/static/img/signin.PNG)
+    ![alt text](https://github.com/truonglehcm/ng-spring-auth/blob/master/src/main/resources/static/img/signin.PNG)
     
   * Signup page:
   
-    ![alt text](https://github.com/truonglehcm/SpringJwtAngularjs/blob/master/src/main/resources/static/img/sign_up.PNG)
+    ![alt text](https://github.com/truonglehcm/ng-spring-auth/blob/master/src/main/resources/static/img/sign_up.PNG)
         
   * Confirm reset password page:
   
-    ![alt text](https://github.com/truonglehcm/SpringJwtAngularjs/blob/master/src/main/resources/static/img/confirm_reset_password.PNG)
+    ![alt text](https://github.com/truonglehcm/ng-spring-auth/blob/master/src/main/resources/static/img/confirm_reset_password.PNG)
     
   * Manage api page:
   
-    ![alt text](https://github.com/truonglehcm/SpringJwtAngularjs/blob/master/src/main/resources/static/img/manage_api.PNG)
+    ![alt text](https://github.com/truonglehcm/ng-spring-auth/blob/master/src/main/resources/static/img/manage_api.PNG)
     
   * Manage post page:
   
-    ![alt text](https://github.com/truonglehcm/SpringJwtAngularjs/blob/master/src/main/resources/static/img/manage_post.PNG)
+    ![alt text](https://github.com/truonglehcm/ng-spring-auth/blob/master/src/main/resources/static/img/manage_post.PNG)
       
   * Manage tag page:
   
-    ![alt text](https://github.com/truonglehcm/SpringJwtAngularjs/blob/master/src/main/resources/static/img/manage_tag.PNG)
+    ![alt text](https://github.com/truonglehcm/ng-spring-auth/blob/master/src/main/resources/static/img/manage_tag.PNG)
         
   * Manage user page:
   
-    ![alt text](https://github.com/truonglehcm/SpringJwtAngularjs/blob/master/src/main/resources/static/img/manage_user.PNG)
+    ![alt text](https://github.com/truonglehcm/ng-spring-auth/blob/master/src/main/resources/static/img/manage_user.PNG)
     
   * Add or edit post page:
   
-    ![alt text](https://github.com/truonglehcm/SpringJwtAngularjs/blob/master/src/main/resources/static/img/add_or_edit_post.PNG)
+    ![alt text](https://github.com/truonglehcm/ng-spring-auth/blob/master/src/main/resources/static/img/add_or_edit_post.PNG)
     
   * Add or edit user page:
   
-    ![alt text](https://github.com/truonglehcm/SpringJwtAngularjs/blob/master/src/main/resources/static/img/add_ore_dit_user.PNG)  
+    ![alt text](https://github.com/truonglehcm/ng-spring-auth/blob/master/src/main/resources/static/img/add_ore_dit_user.PNG)  
  
   * Manage profile user page: // todo
   
-    ![alt text](https://github.com/truonglehcm/SpringJwtAngularjs/blob/master/src/main/resources/static/img/profile.PNG)  
+    ![alt text](https://github.com/truonglehcm/ng-spring-auth/blob/master/src/main/resources/static/img/profile.PNG)  

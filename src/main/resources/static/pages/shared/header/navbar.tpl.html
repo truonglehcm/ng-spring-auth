@@ -1,0 +1,85 @@
+<nav class="navbar-normal navbar navbar-default pmd-z-depth" role="navigation">
+	<div class="container" >
+		<div class="navbar-header">
+			<div class="row">
+				<div class="col-xs-3 col-md-0 col-nav-collapse">
+					<button type="button" class="navbar-toggle-left navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			            <span class="sr-only">Toggle navigation</span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			    	</button>
+				</div>
+				<div class="col-xs-6 col-md-12 text-center">
+					<a id="appLogo" class="appLogo navbar-brand" href="#">Project name</a>
+				</div>
+				<div class="col-xs-3 col-md-0 col-nav-collapse">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			            <span class="sr-only">Toggle navigation</span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			    	</button>
+				</div>
+			</div>
+        </div>
+	
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav main-nav">
+				<li><a ui-sref-active="active" ui-sref="home">Home</a></li>
+				<li class="dropdown">
+					<a href="javascript:void(0)" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
+						Back End <b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a ui-sref="home">Spring</a></li>
+						<li><a ui-sref="home">Hibernate</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="javascript:void(0)" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
+						Front End <b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a ui-sref="home">Angularjs</a></li>
+						<li><a ui-sref="home">Vuejs</a></li>
+					</ul>
+				</li>
+				<li><a ui-sref="home">Project</a></li>
+				<li><a ui-sref-active="active" ui-sref="about">About</a></li>
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right main-nav">
+				<li ng-if="!isAuthenticated">
+					<a ui-sref="signin">Sign In</a>
+				</li>
+				<li ng-if="!isAuthenticated">
+					<a ui-sref="signup">Sign Up</a>
+				</li>
+				<li ng-if="isAuthenticated" class="dropdown">
+					<a href="javascript:void(0)" data-target="#" class="dropdown-toggle" data-toggle="dropdown"> 
+						{{username}}
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a ui-sref="management.setting">
+								<i class="fa fa-cog"></i> Setting
+							</a>
+						</li>
+						<li ng-if="roles.ROLE_ADMIN">
+							<a ui-sref="management.dashboard">
+								<i class="fa fa-tachometer"></i> Dashboard
+							</a>
+						</li>                    
+						<li>
+							<a href ng-if="isAuthenticated" ng-click="logout()">
+								<i class="fa fa-power-off"></i> Logout
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>

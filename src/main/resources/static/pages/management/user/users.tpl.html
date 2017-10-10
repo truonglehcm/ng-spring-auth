@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="col-md-6"><h1>List User</h1></div>
+	<div class="col-md-6 text-right group-btn">
+		<button id='userToggleFilter' ng-class="gridUsersOptions.enableFiltering ? 'active' : ''" 
+				class="user-btn" ng-click="toggleFilter()" href="javascript:void(0)">
+			<i class="fa fa-filter" aria-hidden="true"></i>
+		</button>
+		<button id='addUser' class="user-btn" ng-click="addUser()" href="javascript:void(0)">
+			<i class="fa fa-plus" aria-hidden="true"></i>
+		</button>
+		<button id='refreshUser' class="user-btn" ng-click="refresh()" href="javascript:void(0)">
+			<i class="fa fa-refresh" aria-hidden="true"></i>
+		</button>
+	</div>
+</div>
+<div class="row">
+ 	<div class="col-md-12">
+		<div id="gridUsers" ui-grid="gridUsersOptions" ui-grid-pagination ui-grid-cellNav ui-grid-edit class="grid"></div>
+	</div>
+ </div>

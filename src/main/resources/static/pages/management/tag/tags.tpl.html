@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="col-md-6"><h1>List Tag</h1></div>
+	<div class="col-md-6 text-right group-btn">
+		<button id='tagToggleFilter' ng-class="gridTagsOptions.enableFiltering ? 'active' : ''" 
+				class="tag-btn" ng-click="toggleFilter()" href="javascript:void(0)">
+			<i class="fa fa-filter" aria-hidden="true"></i>
+		</button>
+		<button id='addTag' class="tag-btn" ng-click="addTag()" href="javascript:void(0)">
+			<i class="fa fa-plus" aria-hidden="true"></i>
+		</button>
+		<button id='refreshTag' class="tag-btn" ng-click="refresh()" href="javascript:void(0)">
+			<i class="fa fa-refresh" aria-hidden="true"></i>
+		</button>
+	</div>
+</div>
+<div class="row">	
+	<div class="col-md-12">
+		<div id="gridTags" ui-grid="gridTagsOptions" ui-grid-pagination  ui-grid-cellNav ui-grid-edit class="grid"></div>
+	</div>
+</div>

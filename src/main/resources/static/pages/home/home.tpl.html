@@ -1,0 +1,76 @@
+<div class="container container-default container-wrapper">
+	<div class="row">
+		<div class="col-md-9 col-xs-12 content">
+			<div class="blog-box row" ng-class="{'blog-box-first' : $first}" ng-repeat="post in posts">
+			  	<div class="post-image col-md-3">
+			  		<a href="{{post.logoUrl}}" class="prettyphoto" title="Blog post title">
+	                    <img class="img-responsive lazy img-rounded" ng-src="{{post.logoUrl}}" data-original="{{post.logoUrl}}" alt="" style="display: block;">
+	                </a>
+			  	</div>
+			  	<div class="post-content-wrapper col-md-9">
+		                <a class="post-title" ui-sref="postDetail({postId: post.id})" title="{{post.title}}">
+		                    <span ng-bind-html="post.title" data-ellipsis></span>
+		                </a>
+		                <div class="post-meta">
+		                    <span>
+		                        <i class="fa fa-user"></i>
+		                        <a href="#" title="">{{post.createBy}}</a>
+		                    </span>
+		                    <span>
+		                        <i class="fa fa-clock-o"></i>
+		                        {{ post.createAt | date : "MMM d, y h:mm:ss a" }}
+		                    </span>
+		                    <span>
+		                        <i class="fa fa-eye"></i>
+		                        {{ post.visited }} Visited
+		                    </span>
+		                </div>
+		                <div class="post-content" ng-bind-html="post.description" data-ellipsis></div>
+		                <a ui-sref="postDetail({postId: post.id})"  class="btn btn btn-primary" title="Read more">Read more</a>
+			  	</div>
+			</div>
+		</div>
+		
+  		<div class="col-md-3 hidden-xs left-sidebar">
+			<div class="panel panel-default">
+			  	<div class="panel-heading">
+			  		<div class="row">
+						<div class="col-md-12"><h4>RECENT POSTS</h4></div>
+					</div>
+				</div>
+			  	<div class="panel-body">
+			  		<div class="row">
+						<div class="col-md-12">
+							<ul class="panel-post-stick">
+								<li>Post title</li>
+								<li>Post title</li>
+								<li>Post title</li>
+								<li>Post title</li>
+							</ul>
+						</div>
+					</div>
+			  	</div>
+			</div>
+			
+			<div class="panel panel-default">
+			  	<div class="panel-heading">
+			  		<div class="row">
+						<div class="col-md-12"><h4>TOP POSTS</h4></div>
+					</div>
+				</div>
+			  	<div class="panel-body">
+			  		<div class="row">
+						<div class="col-md-12">
+							<ul class="panel-post-stick">
+								<li>Post title</li>
+								<li>Post title</li>
+								<li>Post title</li>
+								<li>Post title</li>
+							</ul>
+						</div>
+					</div>
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>

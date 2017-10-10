@@ -1,0 +1,89 @@
+<br/>
+<div class="row">
+	<div class="col-md-12">
+		<div class="pmd-card pmd-z-depth"> 
+			<uib-tabset active="active">
+			    <uib-tab index="0" heading="Info Setting">
+					<div class="row">
+						<br/>
+						<form class="form-horizontal">
+						  <fieldset>
+						  		<div class="form-group pmd-textfield">
+								  <label class="col-md-3 control-label" for="username">Username</label>
+								  <div class="col-md-6">
+									  <input type="text" ng-model="profile.username" class="form-control" id="username" placeholder="">
+									  <span class="pmd-textfield-focused"></span>
+								  </div>
+								</div>
+								<div class="form-group pmd-textfield">
+								  <label class="col-md-3 control-label" for="fname">First Name</label>
+								  <div class="col-md-6">
+									  <input type="text" ng-model="profile.firstname" class="form-control" id="fname" placeholder="">
+									  <span class="pmd-textfield-focused"></span>
+								  </div>
+								</div>
+								<div class="form-group pmd-textfield">
+								  <label class="col-md-3 control-label" for="lname">Last Name</label>
+								  <div class="col-md-6">
+									  <input type="text" ng-model="profile.lastname" class="form-control empty" id="lname" placeholder="">
+									  <span class="pmd-textfield-focused"></span>
+								  </div>
+								</div>
+								<div class="form-group pmd-textfield">
+								  <label class="col-md-3 control-label" for="email">Email</label>
+								  <div class="col-md-6">
+									  <input type="email" ng-model="profile.email" class="form-control empty" id="email" placeholder="">
+									  <span class="pmd-textfield-focused"></span>
+								  </div>
+								</div>
+								<div class="form-group">
+								  <div class="col-md-6 col-md-offset-3">
+										<button type="submit" class="btn btn-primary pmd-ripple-effect">Update</button>
+										<button class="btn btn-default btn-link pmd-ripple-effect">Cancel</button>
+								  </div>
+								</div>
+						  </fieldset>
+						</form>
+					</div>
+				</uib-tab>
+			    <uib-tab index="1" heading="Password Setting">
+			    	<br/>
+					<div class="row">	
+						<form class="form-horizontal">
+						  <fieldset>
+							<div class="form-group pmd-textfield">
+								<label class="control-label col-md-3" for="oldPassword">Old Password</label>
+								<div class="col-md-6">
+									<input type="password" class="form-control empty" id="oldPassword">
+									<span class="pmd-textfield-focused"></span>
+								</div>
+							</div>
+							<div class="form-group pmd-textfield">
+								<label class="control-label col-md-3" for="newPassword">New Password</label>
+								<div class="col-md-6">
+									<input type="password" class="form-control empty" id="newPassword" value="">
+									<span class="pmd-textfield-focused"></span>
+								</div>
+							</div>
+							<div class="form-group pmd-textfield">
+								<label class="control-label col-md-3" for="newPasswordConfirm">Confirm Password</label>
+								<div class="col-md-6">
+									<input type="password" class="form-control empty" id="newPasswordConfirm" value="">
+									<span class="pmd-textfield-focused"></span>
+								</div>
+							</div>
+							<div class="form-group btns">
+							  <div class="col-md-6 col-md-offset-3">
+								<button type="submit" class="btn btn-primary pmd-ripple-effect">Update</button>
+								<button class="btn btn-default btn-link pmd-ripple-effect">Cancel</button>
+							  </div>
+							</div>
+						  </fieldset>
+						</form>
+					</div>
+				</uib-tab>
+			    <uib-tab index="2" heading="Timeline Setting">Timeline Setting</uib-tab>
+			</uib-tabset>
+		</div>
+	</div> <!--Default tab example end-->
+</div>

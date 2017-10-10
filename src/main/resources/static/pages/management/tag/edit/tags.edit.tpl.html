@@ -1,0 +1,30 @@
+<div class="modal-header text-center">
+    <h3 class="modal-title">{{title}}</h3>
+</div>
+<div class="modal-body">
+   	<form name="tagForm" novalidate="novalidate">
+		<!-- tag name -->
+		<div class="form-group" ng-class="{'has-error' : tagForm.tagName.$dirty && tagForm.tagName.$invalid}">
+		     <label class="control-label" for="tagName">Tag Name*</label>
+		     <input id="tagName" type="text" class="form-control" name="tagName" ng-minlength="3" ng-maxlength="255" maxlength="255" ng-model="entity.name" required/>
+		     <div class="help-block" ng-messages="tagForm.tagName.$error" ng-if="tagForm.tagName.$dirty">
+		         <span ng-message="required" >Tag Name is required.</span>
+		         <span ng-message="minlength" >Tag Name is too short.</span>
+				 <span ng-message="maxlength" >Tag Name is too long.</span>
+			 </div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label" for="visible">Visible</label>
+			<input id="visible" type="checkbox" name="visible" ng-model="entity.visible" ng-init="entity.visible=true" />
+		</div>	
+	</form>
+</div>
+<div class="modal-footer">	
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<button class="btn btn-primary" ng-disabled="tagForm.$invalid" ng-click="saveTag()">Save</button>
+	  		<button class="btn btn-warning" ng-click="$close()">Cancel</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,96 @@
+<div class="container">
+	<div id="signupForm" class="signupForm pmd-z-depth">
+		<div class="pmd-card card-default pmd-z-depth">
+			<div class="reset-card">
+		        <form name="signupForm" role="form" novalidate>
+		        	<div class="pmd-card-title card-header-border text-center">
+						<div class="loginlogo">
+							<a ui-sref="home">
+								<i class="material-icons md-dark pmd-md" style="font-size: 99px;">account_circle</i>
+							</a>
+						</div>
+						<h3>Sign Up</h3>
+					</div>
+		      		<div class="pmd-card-body">
+			        	<!-- first name -->
+			            <div class="form-group pmd-textfield pmd-textfield-floating-label" ng-class="{'has-error' : signupForm.firstname.$dirty && signupForm.firstname.$invalid}">
+			                 <label class="control-label" for="firstname">First Name*</label>
+			                 <input id="firstname" type="text" class="form-control" name="firstname" ng-minlength="3" ng-maxlength="100" ng-model="firstname" required/>
+			                 <span class="pmd-textfield-focused"></span>
+			                 <div class="help-block" ng-messages="signupForm.firstname.$error" ng-if="signupForm.firstname.$dirty">
+			                     <span ng-message="required" >First Name is required.</span>
+			                     <span ng-message="minlength" >First Name is too short.</span>
+								 <span ng-message="maxlength" >First Name is too long.</span>
+							 </div>
+			            </div>
+			            
+			            <!-- last name -->
+			            <div class="form-group pmd-textfield pmd-textfield-floating-label" ng-class="{'has-error' : signupForm.lastname.$dirty && signupForm.lastname.$invalid}">
+			                  <label class="control-label" for="lastname">Last Name*</label>
+			                  <input id="lastname" type="text" class="form-control" name="lastname" ng-minlength="3" ng-maxlength="100" ng-model="lastname" required/>
+			                  <span class="pmd-textfield-focused"></span>
+			                  <div class="help-block" ng-messages="signupForm.lastname.$error" ng-if="signupForm.lastname.$dirty">
+			                   	<span ng-message="required" >Last Name is required.</span>
+			                   	<span ng-message="minlength" >Last Name is too short.</span>
+								<span ng-message="maxlength" >Last Name is too long.</span>
+							</div>
+			            </div>
+			            
+						<!-- email -->
+			            <div class="form-group pmd-textfield pmd-textfield-floating-label" ng-class="{'has-error' : signupForm.email.$dirty && signupForm.email.$invalid}">
+			                 <label class="control-label" for="email">Email*</label>
+			                 <input id="email" type="email" class="form-control" name="email" ng-minlength="3" ng-maxlength="100" ng-model="email" required/>
+			                 <span class="pmd-textfield-focused"></span>
+			                 <div class="help-block" ng-messages="signupForm.email.$error" ng-if="signupForm.email.$dirty">
+			                  	<span ng-message="required" >Email is required.</span>
+			                    <span ng-message="minlength" >Email is too short.</span>
+								<span ng-message="maxlength" >Email is too long.</span>
+								<span ng-message="email">Email invalid.</p>
+							</div>
+			            </div>
+			
+			 			<!-- password --> 
+			           	<div class="form-group pmd-textfield pmd-textfield-floating-label" ng-class="{'has-error' : signupForm.password.$dirty && signupForm.password.$invalid}">
+			                 <label class="control-label" for="password">Password*</label>
+			                 <input id="password" type="password" class="form-control" name="password" ng-minlength="3" ng-maxlength="100" ng-model="password" required/>
+			                 <span class="pmd-textfield-focused"></span>
+			                 <div class="help-block" ng-messages="signupForm.password.$error" ng-if="signupForm.password.$dirty">
+			                     <span ng-message="required" >Password is required.</span>
+			                     <span ng-message="minlength" >Password is too short.</span>
+								 <span ng-message="maxlength" >Password is too long.</span>
+							</div>
+			           	</div>
+			           	
+						<!-- Retype Password -->
+			            <div class="form-group pmd-textfield pmd-textfield-floating-label" ng-class="{'has-error' : signupForm.matchingpassword.$dirty && signupForm.matchingpassword.$invalid}">
+			                <label class="control-label" for="matchPassword">Retype Password*</label>
+			  				<input id="matchPassword" type="password" class="form-control" name="matchingpassword" ng-minlength="3" ng-maxlength="100" ng-model="matchingpassword" required/>
+				  			<span class="pmd-textfield-focused"></span>
+				  			<div class="help-block" ng-messages="signupForm.matchingpassword.$error" ng-if="signupForm.matchingpassword.$dirty">
+			                    <span ng-message="required" >Retype Password is required.</span>
+			                    <span ng-message="minlength" >Retype Password is too short.</span>
+								<span ng-message="maxlength" >Retype Password is too long.</span>
+							</div>
+			            </div>
+		            
+			            <!-- captcha -->
+			            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+			                <label class="control-label">Captcha*</label>
+			      			<div class="g-recaptcha" vc-recaptcha key="captchaConfig.key" size="normal" ng-model="recaptcha"></div>
+						</div>
+					</div>
+					
+					<div class="pmd-card-footer card-footer-no-border card-footer-p16 text-center">	
+			            <div class="form-group">
+			                <button class="btn btn-lg btn-primary btn-block" ng-click="signup(signupForm.$valid)" ng-disabled="signupForm.$invalid">Sign up</button>
+			            </div>
+			            
+			            <div class="form-group">
+			            	<a ui-sref="signin">Login In</a>
+			            </div>
+		            </div>
+		        </form>
+	      	</div>
+	    </div>
+	</div>
+</div>

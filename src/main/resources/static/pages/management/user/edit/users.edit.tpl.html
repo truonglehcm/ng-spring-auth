@@ -1,0 +1,88 @@
+<div class="modal-header text-center">
+    <h2 class="modal-title">{{title}}</h2>
+</div>
+<div class="modal-body">
+   	<form name="userForm" novalidate="novalidate">
+   		<!-- first name -->
+		<div class="form-group" ng-class="{'has-error' : userForm.userName.$dirty && userForm.userName.$invalid}">
+		     <label class="control-label" for="userName">User Name*</label>
+		     <input id="userName" type="text" class="form-control" name="userName" ng-minlength="3" ng-maxlength="50" maxlength="50" ng-model="entity.userName" required/>
+		     <div class="help-block" ng-messages="userForm.userName.$error" ng-if="userForm.userName.$dirty">
+		         <span ng-message="required" >User Name is required.</span>
+		         <span ng-message="minlength" >User Name is too short.</span>
+				 <span ng-message="maxlength" >User Name is too long.</span>
+			 </div>
+		</div>
+   	
+		<!-- first name -->
+		<div class="form-group" ng-class="{'has-error' : userForm.firstName.$dirty && userForm.firstName.$invalid}">
+		     <label class="control-label" for="firstName">First Name*</label>
+		     <input id="firstName" type="text" class="form-control" name="firstName" ng-minlength="3" ng-maxlength="50" maxlength="50" ng-model="entity.firstName" required/>
+		     <div class="help-block" ng-messages="userForm.firstName.$error" ng-if="userForm.firstName.$dirty">
+		         <span ng-message="required" >First Name is required.</span>
+		         <span ng-message="minlength" >First Name is too short.</span>
+				 <span ng-message="maxlength" >First Name is too long.</span>
+			 </div>
+		</div>
+		            
+		<!-- last name -->
+		<div class="form-group" ng-class="{'has-error' : userForm.lastName.$dirty && userForm.lastName.$invalid}">
+		     <label class="control-label" for="lastName">Last Name*</label>
+		     <input id="lastName" type="text" class="form-control" name="lastName" ng-minlength="3" ng-maxlength="50" maxlength="50" ng-model="entity.lastName" required/>
+		     <div class="help-block" ng-messages="userForm.lastName.$error" ng-if="userForm.lastName.$dirty">
+		       	 <span ng-message="required" >Last Name is required.</span>
+		       	 <span ng-message="minlength" >Last Name is too short.</span>
+				 <span ng-message="maxlength" >Last Name is too long.</span>
+			</div>
+		</div>            
+		            
+		<!-- email -->
+		<div class="form-group" ng-class="{'has-error' : userForm.email.$dirty && userForm.email.$invalid}">
+		    <label class="control-label" for="email">Email*</label>
+		    <input id="email" type="email" class="form-control" name="email" ng-minlength="3" ng-maxlength="100" ng-model="entity.email" required/>
+		    <div class="help-block" ng-messages="userForm.email.$error" ng-if="userForm.email.$dirty">
+		    	<span ng-message="required" >Email is required.</span>
+		        <span ng-message="minlength" >Email is too short.</span>
+				<span ng-message="maxlength" >Email is too long.</span>
+				<span ng-message="email">Email invalid.</span>
+			</div>
+		</div>
+		
+		<!-- password --> 
+		<div ng-if="isNew" class="form-group" ng-class="{'has-error' : userForm.password.$dirty && userForm.password.$invalid}">
+		     <label class="control-label" for="password">Password*</label>
+		     <input id="password" type="password" class="form-control" name="password" ng-minlength="3" ng-maxlength="100" ng-model="entity.password" required/>
+		     <div class="help-block" ng-messages="userForm.password.$error" ng-if="userForm.password.$dirty">
+		         <span ng-message="required" >Password is required.</span>
+		         <span ng-message="minlength" >Password is too short.</span>
+				 <span ng-message="maxlength" >Password is too long.</span>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="row">
+				<div class="col-md-3">
+					<label class="control-label" for="enabled">Enabled</label>
+					<input id="enabled" type="checkbox" name="enabled" ng-model="entity.enabled" ng-init="isNew ? entity.enabled=true : entity.enabled" />
+				</div>
+				<div class="col-md-3">
+					<label class="control-label" for="expired">Expired</label>
+					<input id="expired" type="checkbox" name="expired" ng-model="entity.expired" ng-init="isNew ? entity.expired=false : entity.expired" />
+				</div>
+				<div class="col-md-3">
+					<label class="control-label" for="locked">Locked</label>
+					<input id="locked" type="checkbox" name="locked" ng-model="entity.locked" ng-init="isNew ? entity.locked=false : entity.locked" />
+				</div>
+			</div>
+		</div>	
+	</form>
+</div>
+<div class="modal-body">	
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<button class="btn btn-primary" ng-disabled="userForm.$invalid" ng-click="saveUser()">Save</button>
+			<button class="btn btn-danger" ng-if="!isNew" ng-click="deleteUser(entity)">Delete</button>
+	  		<button class="btn btn-warning" ng-click="$close()">Cancel</button>
+		</div>
+	</div>
+</div>

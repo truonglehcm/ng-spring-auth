@@ -28,16 +28,13 @@
     spring.mail.username=your google mail
     spring.mail.password=your password google mail
     
-### If you want to use recaptcha for your site, then follow step 3, step 4, Step 5 ###
+### If you want to use recaptcha for your site, then follow step 3, step 4 ###
 
 ##### 3. Regist recaptcha from here: https://www.google.com/recaptcha/intro/ #####
 
 ##### 4. Open file <strong>application-dev.properties</strong> and change #####
     google.recaptcha.site-key=Your site key (from step 3)
     google.recaptcha.secret-key=Your secret key (from step 3)
-       
-##### 5. Open file app.constants.js and change<br>
-    PUBLIC_RECAPTCHA_KEY : 'your puplic site key'
       
 ### Build ###
     mvn clean install
@@ -92,6 +89,6 @@
   
     ![alt text](https://github.com/truonglehcm/ng-spring-auth/blob/master/src/main/resources/static/img/add_ore_dit_user.PNG)  
  
-  * Manage profile user page: // todo
+  * Manage profile user page:
   
     ![alt text](https://github.com/truonglehcm/ng-spring-auth/blob/master/src/main/resources/static/img/profile.PNG)  

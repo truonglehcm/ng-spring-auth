@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import demo.spring.angular.auth.utils.AuthoritiesConstants;
+import demo.spring.angular.auth.persistence.enums.AuthorityName;
 import demo.spring.angular.auth.web.filter.AuthEntryPoint;
 import demo.spring.angular.auth.web.filter.AuthFilter;
 
@@ -48,8 +48,39 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 
-		String[] patterns = new String[] { "/", "/posts/**", "/v2/**", "/*.html", "/favicon.ico", "/**/*.html",
-				"/**/*.css", "/**/*.js", "/libs/**/*", "/img/*" };
+		String[] menthodGetPatterns = new String[] { 
+				"/", 
+				"/posts/**", 
+				"/v2/**", 
+				"/*.html", 
+				"/favicon.ico", 
+				"/**/*.html",
+				"/**/*.css", 
+				"/**/*.js", 
+				"/libs/**/*", 
+				"/img/*"
+		};
+		
+		String[] permitAllPatterns = new String[] { 
+				"/auth/**", 
+				"/reset/password/**", 
+				"/reset/password/confirm/**"
+		};
+		
+		String[] adminRequiredPattern = new String[] {
+				"/management/dashboard",
+				"/management/users",
+				"/management/tags",
+				"/management/tags",
+				"/management/config"
+		};
+		
+		String[] authRequiredPattern = new String[] {
+				"/management/posts/**", 
+				"/management/profile",
+				"/user/profile/**",
+				"/user/change-password/**"
+		};
 
 		httpSecurity
 				// we don't need CSRF because our token is invulnerable
@@ -59,23 +90,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 				// don't create session
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-
+				
 				.authorizeRequests()
-				// .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+				
+				// cors request config
+				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
 				// allow anonymous resource requests
-				.antMatchers(HttpMethod.GET, patterns).permitAll().antMatchers("/auth/**").permitAll()
-				.antMatchers("/reset/password/**").permitAll().antMatchers("/reset/password/confirm/**").permitAll()
-				.antMatchers("/management/posts/**", "/management/profile").hasAnyAuthority("ROLE_USER, ROLE_ADMIN")
-				.antMatchers("/management/dashboard").hasAuthority(AuthoritiesConstants.ADMIN).antMatchers("/management/users")
-				.hasAuthority(AuthoritiesConstants.ADMIN).antMatchers("/management/tags").hasAuthority(AuthoritiesConstants.ADMIN)
-				.antMatchers("/management/config").hasAuthority(AuthoritiesConstants.ADMIN).anyRequest().authenticated();
+				.antMatchers(HttpMethod.GET, menthodGetPatterns).permitAll()
+				.antMatchers(permitAllPatterns).permitAll()
+				.antMatchers(authRequiredPattern).hasAnyAuthority(AuthorityName.ROLE_ADMIN.name(), AuthorityName.ROLE_USER.name())
+				.antMatchers(adminRequiredPattern).hasAuthority(AuthorityName.ROLE_ADMIN.name())
+				.anyRequest().authenticated();
 
 		// Custom JWT based security filter
-		httpSecurity.addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class);
+		httpSecurity
+				.addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class);
 
 		// disable page caching
-		httpSecurity.headers().cacheControl();
+		httpSecurity
+				.headers().cacheControl();
 
 	}
 }

@@ -19,9 +19,9 @@
 	 * @returns
 	 */
 	function SignInCtrl($rootScope, $scope, $state, $auth, toastr) {
-		$scope.login = function (username, password) {
+		$scope.login = function (userName, password) {
 	        $auth
-	        	.login({username: username, password: password})
+	        	.login({username: userName, password: password})
 	            .then(function (response) {
 	                $auth.setToken(response.data.token);
 	                $state.go('home');

@@ -16,11 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 import demo.spring.angular.auth.persistence.entity.Post;
 import demo.spring.angular.auth.persistence.entity.PostDetail;
 import demo.spring.angular.auth.persistence.entity.User;
+import demo.spring.angular.auth.persistence.enums.AuthorityName;
 import demo.spring.angular.auth.persistence.repository.PostDetailRepository;
 import demo.spring.angular.auth.persistence.repository.PostRepository;
 import demo.spring.angular.auth.persistence.repository.UserRepository;
 import demo.spring.angular.auth.persistence.service.IPostService;
-import demo.spring.angular.auth.utils.AuthoritiesConstants;
 import demo.spring.angular.auth.utils.SecurityUtils;
 import demo.spring.angular.auth.web.exception.ServiceException;
 import demo.spring.angular.auth.web.request.PostRequest;
@@ -107,7 +107,7 @@ public class PostService extends GenericService<Post, Long> implements IPostServ
 		try {
 			if(!SecurityUtils.isAuthenticated()) {
 				throw new AccessDeniedException("Access deniel");
-	    	} else if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+	    	} else if(SecurityUtils.isCurrentUserInRole(AuthorityName.ROLE_ADMIN.name())) {
 	    		postRepository.delete(id);
 	    	} else {
 	    		Post post = postRepository.findOne(id);
@@ -137,7 +137,7 @@ public class PostService extends GenericService<Post, Long> implements IPostServ
 			sb.append("On p.create_by = u.id ");
 			
 			// if is user get post belong to this user
-			if(isManage && !SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+			if(isManage && !SecurityUtils.isCurrentUserInRole(AuthorityName.ROLE_ADMIN.name())) {
 				sb.append("Where u.username = :username");
 			}
 			
@@ -152,7 +152,7 @@ public class PostService extends GenericService<Post, Long> implements IPostServ
 			.addScalar("visited", StandardBasicTypes.STRING)
 			.setResultTransformer(Transformers.aliasToBean(PostResponse.class));
 			
-			if(isManage && !SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+			if(isManage && !SecurityUtils.isCurrentUserInRole(AuthorityName.ROLE_ADMIN.name())) {
 				String userName = SecurityUtils.getCurrentUserLogin();
 				q.setParameter("username", userName);
 			}

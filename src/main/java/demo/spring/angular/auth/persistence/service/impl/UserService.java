@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.mobile.device.Device;
@@ -31,17 +32,19 @@ import demo.spring.angular.auth.persistence.repository.PasswordResetTokenReposit
 import demo.spring.angular.auth.persistence.repository.UserRepository;
 import demo.spring.angular.auth.persistence.repository.VerificationTokenRepository;
 import demo.spring.angular.auth.persistence.service.IUserService;
-import demo.spring.angular.auth.utils.AuthoritiesConstants;
 import demo.spring.angular.auth.utils.CommonUtils;
 import demo.spring.angular.auth.utils.MessageConstant;
 import demo.spring.angular.auth.utils.SecurityUtils;
 import demo.spring.angular.auth.utils.SystemConstant;
 import demo.spring.angular.auth.web.exception.EmailExistsException;
+import demo.spring.angular.auth.web.exception.NotFoundException;
 import demo.spring.angular.auth.web.exception.ServiceException;
 import demo.spring.angular.auth.web.exception.TokenNotFoundException;
 import demo.spring.angular.auth.web.exception.UserNotFoundException;
 import demo.spring.angular.auth.web.request.SignupRequest;
+import demo.spring.angular.auth.web.request.UserChangePasswordRequest;
 import demo.spring.angular.auth.web.request.UserRequest;
+import demo.spring.angular.auth.web.request.UserUpdateInfoRequest;
 import demo.spring.angular.auth.web.request.UserUpdateRequest;
 import demo.spring.angular.auth.web.response.UserResponse;
 
@@ -190,7 +193,7 @@ public class UserService extends GenericService<User, Long> implements IUserServ
 	@Override
 	public void deleteUser(Long id) throws ServiceException {
 		try {
-			if(!SecurityUtils.isAuthenticated() || !SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+			if(!SecurityUtils.isAuthenticated() || !SecurityUtils.isCurrentUserInRole(AuthorityName.ROLE_ADMIN.name())) {
 				throw new AccessDeniedException("Access deniel");
 	    	} 
 	    	userRepository.delete(id);
@@ -281,5 +284,36 @@ public class UserService extends GenericService<User, Long> implements IUserServ
 				.stream()
 				.map(u -> mapper.map(u, UserResponse.class))
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public void updateProfile(UserUpdateInfoRequest userUpdateInfoRequest, HttpServletRequest httpRequest, Device device)
+			throws ServiceException {
+		User oldUser = userRepository.findByUserName(userUpdateInfoRequest.getUsername());
+		if (Objects.isNull(oldUser)) {
+			throw new NotFoundException(messageSource.getMessage("message.userNotFound", null, httpRequest.getLocale()));
+		}
+		
+		oldUser.setFirstName(userUpdateInfoRequest.getFirstName());
+		oldUser.setLastName(userUpdateInfoRequest.getLastName());
+	}
+
+	@Override
+	public void changePassword(UserChangePasswordRequest userChangePasswordRequest, HttpServletRequest httpRequest,
+			Device device) throws ServiceException {
+		
+		String oldPassword = userChangePasswordRequest.getOldPassword();
+		String newPassword = userChangePasswordRequest.getNewPassword();
+		
+		if(StringUtils.equals(oldPassword, newPassword)) {
+			throw new ServiceException(messageSource.getMessage("message.error.password.exist", null, httpRequest.getLocale()));
+		}
+		
+		User oldUser = userRepository.findByUserName(userChangePasswordRequest.getUsername());
+		if (Objects.isNull(oldUser)) {
+			throw new NotFoundException(messageSource.getMessage("message.userNotFound", null, httpRequest.getLocale()));
+		}
+		
+		oldUser.setPassword(passwordEncoder.encode(userChangePasswordRequest.getNewPassword()));
 	}
 }

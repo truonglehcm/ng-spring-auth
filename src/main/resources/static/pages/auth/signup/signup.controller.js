@@ -7,7 +7,7 @@
 		.controller('SignUpCtrl', SignUpCtrl);
 
 	/*** @inject service ***/
-	SignUpCtrl.$inject = [ '$rootScope', '$scope', '$state', '$auth', 'toastr', 'CONFIG'];
+	SignUpCtrl.$inject = [ '$rootScope', '$scope', '$state', '$auth', 'toastr', 'CONFIG', 'SignUpService'];
 	
 	/**
 	 * define controller detail
@@ -18,11 +18,11 @@
 	 * @param toastr
 	 * @returns
 	 */
-	function SignUpCtrl($rootScope, $scope, $state, $auth, toastr, CONFIG) {
+	function SignUpCtrl($rootScope, $scope, $state, $auth, toastr, CONFIG, SignUpService) {
 		
-		$scope.captchaConfig = {
-            key: CONFIG.PUBLIC_RECAPTCHA_KEY
-        };
+		$scope.captchaConfig = {};
+		
+		getRecaptchaSiteKey();
 		
 		$scope.signup = function(isValid) {
 	    	if (isValid) {
@@ -49,6 +49,16 @@
 	    			  toastr.error(message, {closeButton: true});
 	    		  });
 	    	}
+	    }
+		
+		function getRecaptchaSiteKey() {
+			SignUpService.getRecaptchaSiteKey()
+	    		  .then(function(response) {
+	    			  $scope.captchaConfig.key = response.siteKey;
+	    		  })
+	    		  .catch(function(response) {
+	    			  console.log('can not find site key google captcha');
+	    		  });
 	    }
 	}
 }());

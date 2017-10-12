@@ -35,39 +35,39 @@ public class PostController {
 	@Autowired
 	private IPostService postService;
 
-	@GetMapping(value = { URIConstant.POSTS_GET_BY_ID, URIConstant.ADMIN_FIND_POST })
+	@GetMapping(value = { URIConstant.MANAGEMENT_POST, URIConstant.ADMIN_MANAGEMENT_POST })
 	public ResponseEntity<?> getPost(@PathVariable Long id) throws JsonProcessingException, ServiceException {
 		ObjectWriter viewWriter = CommonUtils.getObjectWriter(mapper);
 		return ResponseEntity.ok(viewWriter.writeValueAsString(postService.getPostDetail(id)));
 	}
 
-	@GetMapping(value = { URIConstant.POSTS })
+	@GetMapping(value = { URIConstant.GET_POSTS })
 	public ResponseEntity<?> getPosts(HttpServletRequest request) throws JsonProcessingException, ServiceException {
 		ObjectWriter viewWriter = CommonUtils.getObjectWriter(mapper);
 		return ResponseEntity.ok(viewWriter.writeValueAsString(postService.findAllPost(false)));
 	}
 
-	@GetMapping(value = { URIConstant.ADMIN_POSTS })
+	@GetMapping(value = { URIConstant.ADMIN_MANAGEMENT_POSTS })
 	public ResponseEntity<?> getManagePosts(HttpServletRequest request) throws JsonProcessingException, ServiceException {
 		ObjectWriter viewWriter = CommonUtils.getObjectWriter(mapper);
 		return ResponseEntity.ok(viewWriter.writeValueAsString(postService.findAllPost(true)));
 	}
 
 	@PreAuthorize("isAuthenticated()")
-	@PostMapping(value = { URIConstant.ADMIN_POSTS })
+	@PostMapping(value = { URIConstant.ADMIN_MANAGEMENT_POSTS })
 	public ResponseEntity<?> createPost(@Valid @RequestBody PostRequest post) throws ServiceException {
 		return ResponseEntity.ok(postService.createPost(post));
 	}
 
 	@PreAuthorize("isAuthenticated()")
-	@PutMapping(value = { URIConstant.ADMIN_UPDATE_POSTS })
+	@PutMapping(value = { URIConstant.ADMIN_MANAGEMENT_POST })
 	public ResponseEntity<?> updatePost(@PathVariable Long id, @RequestBody PostRequest post) throws ServiceException {
 		postService.updatePost(id, post);
 		return ResponseEntity.ok(null);
 	}
 	
 	@PreAuthorize("isAuthenticated()")
-	@DeleteMapping(value = { URIConstant.ADMIN_DELETE_POSTS })
+	@DeleteMapping(value = { URIConstant.ADMIN_MANAGEMENT_POST })
 	public ResponseEntity<?> deletePost(@PathVariable Long id, HttpServletRequest request) throws ServiceException {
 		postService.deletePost(id);
 		return ResponseEntity.ok(null);

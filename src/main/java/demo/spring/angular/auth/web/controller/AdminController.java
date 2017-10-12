@@ -38,25 +38,25 @@ public class AdminController {
     @Autowired
     private IUserService userService;
 	
-	@GetMapping(value = URIConstant.ADMIN_USERS)
+	@GetMapping(value = URIConstant.ADMIN_MANAGEMENT_USERS)
     public ResponseEntity<?> getUsers(HttpServletRequest request) throws JsonProcessingException, ServiceException {
 		ObjectWriter viewWriter = CommonUtils.getObjectWriter(mapper);
         return ResponseEntity.ok(viewWriter.writeValueAsString(userService.findAllUser()));
     }
 	
-	@PostMapping(value = URIConstant.ADMIN_USERS)
+	@PostMapping(value = URIConstant.ADMIN_MANAGEMENT_USERS)
 	public ResponseEntity<?> createUser(@Valid @RequestBody UserRequest userRequest) throws ServiceException, JsonProcessingException {
 		ObjectWriter viewWriter = CommonUtils.getObjectWriter(mapper);
 		return ResponseEntity.ok(viewWriter.writeValueAsString(userService.createUser(userRequest)));
 	}
 	
-	@PutMapping(value = URIConstant.ADMIN_USERS)
+	@PutMapping(value = URIConstant.ADMIN_MANAGEMENT_USERS)
 	public ResponseEntity<?> updateUser(@Valid @RequestBody UserUpdateRequest updateUserRequest) throws ServiceException {
 		userService.updateUser(updateUserRequest);
 		return ResponseEntity.ok().body(null);
 	}
 	
-    @DeleteMapping(value = {URIConstant.ADMIN_DELETE_USERS})
+    @DeleteMapping(value = {URIConstant.ADMIN_MANAGEMENT_USER})
     public ResponseEntity<?> deleteUser(@PathVariable Long id) throws ServiceException {
 		userService.deleteById(id);
     	return ResponseEntity.ok(null);

@@ -6,41 +6,51 @@
 			    <uib-tab index="0" heading="Info Setting">
 					<div class="row">
 						<br/>
-						<form class="form-horizontal">
+						<form name="profileForm" role="form" class="form-horizontal" novalidate >
 						  <fieldset>
 						  		<div class="form-group pmd-textfield">
-								  <label class="col-md-3 control-label" for="username">Username</label>
-								  <div class="col-md-6">
-									  <input type="text" ng-model="profile.username" class="form-control" id="username" placeholder="">
-									  <span class="pmd-textfield-focused"></span>
-								  </div>
+								  	<label class="col-md-3 control-label" for="username">Username</label>
+								  	<div class="col-md-6">
+									  	<input type="text" ng-model="profile.username" class="form-control" id="username" readonly="readonly">
+									  	<span class="pmd-textfield-focused"></span>
+								  	</div>
+								</div>
+								<div class="form-group pmd-textfield" ng-class="{'has-error' : profileForm.firstname.$dirty && profileForm.firstname.$invalid}">
+								  	<label class="col-md-3 control-label" for="fname">First Name</label>
+								  	<div class="col-md-6">
+									  	<input type="text" name="firstname" ng-model="profile.firstName" required maxlength="50" ng-minlength="4" ng-maxlength=50 class="form-control empty" id="fname" autocomplete="off">
+									  	<span class="pmd-textfield-focused"></span>
+					                 	<div class="help-block" ng-messages="profileForm.firstname.$error" ng-if="profileForm.firstname.$dirty">
+						                     <span ng-message="required" >First Name is required.</span>
+						                     <span ng-message="minlength" >First Name is too short.</span>
+											 <span ng-message="maxlength" >First Name is too long.</span>
+									 	</div>
+								  	</div>
+								</div>
+								<div class="form-group pmd-textfield" ng-class="{'has-error' : profileForm.lastname.$dirty && profileForm.lastname.$invalid}">
+								  	<label class="col-md-3 control-label" for="lname">Last Name</label>
+								  	<div class="col-md-6">
+									  	<input type="text" name="lastname" ng-model="profile.lastName" required maxlength="50" ng-minlength="4" ng-maxlength="50" class="form-control empty" id="lname" autocomplete="off">
+									  	<span class="pmd-textfield-focused"></span>
+									  	<div class="help-block" ng-messages="profileForm.lastname.$error" ng-if="profileForm.lastname.$dirty">
+					                   		<span ng-message="required" >Last Name is required.</span>
+					                   		<span ng-message="minlength" >Last Name is too short.</span>
+											<span ng-message="maxlength" >Last Name is too long.</span>
+										</div>
+								  	</div>
 								</div>
 								<div class="form-group pmd-textfield">
-								  <label class="col-md-3 control-label" for="fname">First Name</label>
-								  <div class="col-md-6">
-									  <input type="text" ng-model="profile.firstname" class="form-control" id="fname" placeholder="">
-									  <span class="pmd-textfield-focused"></span>
-								  </div>
-								</div>
-								<div class="form-group pmd-textfield">
-								  <label class="col-md-3 control-label" for="lname">Last Name</label>
-								  <div class="col-md-6">
-									  <input type="text" ng-model="profile.lastname" class="form-control empty" id="lname" placeholder="">
-									  <span class="pmd-textfield-focused"></span>
-								  </div>
-								</div>
-								<div class="form-group pmd-textfield">
-								  <label class="col-md-3 control-label" for="email">Email</label>
-								  <div class="col-md-6">
-									  <input type="email" ng-model="profile.email" class="form-control empty" id="email" placeholder="">
-									  <span class="pmd-textfield-focused"></span>
-								  </div>
+								  	<label class="col-md-3 control-label" for="email">Email</label>
+								  	<div class="col-md-6">
+									  	<input type="email" ng-model="profile.email" class="form-control empty" id="email" readonly="readonly">
+									  	<span class="pmd-textfield-focused"></span>
+								  	</div>
 								</div>
 								<div class="form-group">
-								  <div class="col-md-6 col-md-offset-3">
-										<button type="submit" class="btn btn-primary pmd-ripple-effect">Update</button>
+								  	<div class="col-md-6 col-md-offset-3">
+										<button type="submit" class="btn btn-primary pmd-ripple-effect" ng-click="updateProfile(profileForm.$valid)" ng-disabled="profileForm.$invalid">Update</button>
 										<button class="btn btn-default btn-link pmd-ripple-effect">Cancel</button>
-								  </div>
+								  	</div>
 								</div>
 						  </fieldset>
 						</form>
@@ -49,34 +59,49 @@
 			    <uib-tab index="1" heading="Password Setting">
 			    	<br/>
 					<div class="row">	
-						<form class="form-horizontal">
+						<form name="changePasswordForm" role="form" class="form-horizontal" novalidate>
 						  <fieldset>
-							<div class="form-group pmd-textfield">
+							<div class="form-group pmd-textfield" ng-class="{'has-error' : changePasswordForm.oldPassword.$dirty && changePasswordForm.oldPassword.$invalid}">
 								<label class="control-label col-md-3" for="oldPassword">Old Password</label>
 								<div class="col-md-6">
-									<input type="password" class="form-control empty" id="oldPassword">
+									<input type="password" ng-model="passwordForm.oldPassword" name="oldPassword" required maxlength="50" ng-minlength="4" ng-maxlength="50" class="form-control empty" id="oldPassword">
 									<span class="pmd-textfield-focused"></span>
+									<div class="help-block" ng-messages="passwordForm.oldPassword.$error" ng-if="passwordForm.oldPassword.$dirty">
+					                   	<span ng-message="required" >Old password is required.</span>
+					                   	<span ng-message="minlength" >Old password is too short.</span>
+										<span ng-message="maxlength" >Old password is too long.</span>
+									</div>
 								</div>
 							</div>
-							<div class="form-group pmd-textfield">
+							<div class="form-group pmd-textfield" ng-class="{'has-error' : changePasswordForm.newPassword.$dirty && changePasswordForm.newPassword.$invalid}">
 								<label class="control-label col-md-3" for="newPassword">New Password</label>
 								<div class="col-md-6">
-									<input type="password" class="form-control empty" id="newPassword" value="">
+									<input type="password" ng-model="passwordForm.newPassword" name="newPassword"required maxlength="50" ng-minlength="4" ng-maxlength="50"  class="form-control empty" id="newPassword">
 									<span class="pmd-textfield-focused"></span>
+									<div class="help-block" ng-messages="passwordForm.newPassword.$error" ng-if="passwordForm.newPassword.$dirty">
+					                   	<span ng-message="required" >New password is required.</span>
+					                   	<span ng-message="minlength" >New password is too short.</span>
+										<span ng-message="maxlength" >New password is too long.</span>
+									</div>
 								</div>
 							</div>
-							<div class="form-group pmd-textfield">
+							<div class="form-group pmd-textfield" ng-class="{'has-error' : changePasswordForm.newPasswordConfirm.$dirty && changePasswordForm.newPasswordConfirm.$invalid}">
 								<label class="control-label col-md-3" for="newPasswordConfirm">Confirm Password</label>
 								<div class="col-md-6">
-									<input type="password" class="form-control empty" id="newPasswordConfirm" value="">
+									<input type="password" ng-model="passwordForm.newPasswordConfirm" name="newPasswordConfirm" required maxlength="50" ng-minlength="4" ng-maxlength="50" class="form-control empty" id="newPasswordConfirm">
 									<span class="pmd-textfield-focused"></span>
+									<div class="help-block" ng-messages="passwordForm.newPasswordConfirm.$error" ng-if="passwordForm.newPasswordConfirm.$dirty">
+					                   	<span ng-message="required" >New password is required.</span>
+					                   	<span ng-message="minlength" >New password is too short.</span>
+										<span ng-message="maxlength" >New password is too long.</span>
+									</div>
 								</div>
 							</div>
 							<div class="form-group btns">
-							  <div class="col-md-6 col-md-offset-3">
-								<button type="submit" class="btn btn-primary pmd-ripple-effect">Update</button>
-								<button class="btn btn-default btn-link pmd-ripple-effect">Cancel</button>
-							  </div>
+								<div class="col-md-6 col-md-offset-3">
+							  		<button type="submit" class="btn btn-primary pmd-ripple-effect" ng-click="changePassword(changePasswordForm.$valid)" ng-disabled="changePasswordForm.$invalid">Submit</button>
+									<button class="btn btn-default btn-link pmd-ripple-effect">Cancel</button>
+							  	</div>
 							</div>
 						  </fieldset>
 						</form>
@@ -85,5 +110,5 @@
 			    <uib-tab index="2" heading="Timeline Setting">Timeline Setting</uib-tab>
 			</uib-tabset>
 		</div>
-	</div> <!--Default tab example end-->
+	</div>
 </div>

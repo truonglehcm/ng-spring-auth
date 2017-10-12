@@ -52,9 +52,9 @@ public class UserDetailService implements UserDetailsService {
 
 			return new JwtUserResponse.JwtUserBuilder()
 					.id(user.getId())
-					.username(user.getUserName())
-					.firstname(user.getFirstName())
-					.lastname(user.getLastName())
+					.userName(user.getUserName())
+					.firstName(user.getFirstName())
+					.lastName(user.getLastName())
 					.email(user.getEmail())
 					.password(user.getPassword())
 					.authorities(grantedAuthorities)

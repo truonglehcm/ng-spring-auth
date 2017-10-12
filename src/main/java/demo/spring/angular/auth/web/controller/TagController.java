@@ -36,34 +36,34 @@ public class TagController {
 	@Autowired
 	private ITagService tagService;
 
-	@GetMapping(value = { URIConstant.TAGS_GET_BY_ID, URIConstant.ADMIN_FIND_TAG })
+	@GetMapping(value = { URIConstant.MANAGEMENT_TAG, URIConstant.ADMIN_MANAGEMENT_TAG })
 	public ResponseEntity<?> getTag(@PathVariable Long id) throws JsonProcessingException, ServiceException {
 		ObjectWriter viewWriter = CommonUtils.getObjectWriter(mapper);
 		return ResponseEntity.ok(viewWriter.writeValueAsString(tagService.findTagById(id)));
 	}
 
-	@GetMapping(value = { URIConstant.TAGS, URIConstant.ADMIN_TAGS })
+	@GetMapping(value = { URIConstant.GET_TAGS, URIConstant.ADMIN_MANAGEMENT_TAGS })
 	public ResponseEntity<?> getTags(HttpServletRequest request) throws JsonProcessingException, ServiceException {
 		ObjectWriter viewWriter = CommonUtils.getObjectWriter(mapper);
 		return ResponseEntity.ok(viewWriter.writeValueAsString(tagService.findAllTag()));
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PostMapping(value = { URIConstant.ADMIN_TAGS })
+	@PostMapping(value = { URIConstant.ADMIN_MANAGEMENT_TAGS })
 	public ResponseEntity<?> createTag(@Valid @RequestBody TagRequest tagReq) throws ServiceException, JsonProcessingException {
 		ObjectWriter viewWriter = CommonUtils.getObjectWriter(mapper);
 		return ResponseEntity.ok(viewWriter.writeValueAsString(tagService.createTag(tagReq)));
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PutMapping(value = { URIConstant.ADMIN_TAGS })
+	@PutMapping(value = { URIConstant.ADMIN_MANAGEMENT_TAGS })
 	public ResponseEntity<?> updateTag(@RequestBody TagRequest tag) throws ServiceException {
 		tagService.updateTag(tag);
 		return ResponseEntity.ok(null);
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@DeleteMapping(value = { URIConstant.ADMIN_DELETE_TAGS })
+	@DeleteMapping(value = { URIConstant.ADMIN_MANAGEMENT_TAG })
 	public ResponseEntity<?> deleteTag(@PathVariable Long id) throws ServiceException {
 		tagService.deleteTag(id);
 		return ResponseEntity.ok(null);

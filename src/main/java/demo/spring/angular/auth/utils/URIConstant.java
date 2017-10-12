@@ -19,31 +19,22 @@ public final class URIConstant {
 	public static final String RESET_PASSWORD_CONFIRM = "/reset/password/confirm";
 
 	/********* Tags *****************/
-	public static final String TAGS = "/tags";
-	public static final String TAGS_UPDATE = "/tags/{id}";
-	public static final String TAGS_DELETE = "/tags/{id}";
-	public static final String TAGS_GET_BY_ID = "/tags/{id}";
+	public static final String GET_TAGS = "/tags";
+	public static final String MANAGEMENT_TAG = "/tags/{id}";
 
 	/********* Posts *****************/
-	public static final String POSTS = "/posts";
-	public static final String POSTS_UPDATE = "/posts/{id}";
-	public static final String POSTS_DELETE = "/posts/{id}";
-	public static final String POSTS_GET_BY_ID = "/posts/{id}";
+	public static final String GET_POSTS = "/posts";
+	public static final String MANAGEMENT_POST = "/posts/{id}";
 
 	/********* Management **********/
-	public static final String USER_PROFILE = "/user/profile";
-
-	public static final String ADMIN_POSTS = "/management/posts";
-	public static final String ADMIN_FIND_POST = "/management/posts/{id}";
-	public static final String ADMIN_UPDATE_POSTS = "/management/posts/{id}";
-	public static final String ADMIN_DELETE_POSTS = "/management/posts/{id}";
-
-	public static final String ADMIN_TAGS = "/management/tags";
-	public static final String ADMIN_FIND_TAG = "/management/tags/{id}";
-	public static final String ADMIN_DELETE_TAGS = "/management/tags/{id}";
-
-	public static final String ADMIN_USERS = "/management/users";
-	public static final String ADMIN_DELETE_USERS = "/management/users/{id}";
+	public static final String USER_MANAGEMENT_PROFILE = "/user/profile";
+	public static final String USER_MANAGEMENT_PASSWORD = "/user/change-password";
+	public static final String ADMIN_MANAGEMENT_POSTS = "/management/posts";
+	public static final String ADMIN_MANAGEMENT_POST = "/management/posts/{id}";
+	public static final String ADMIN_MANAGEMENT_TAGS = "/management/tags";
+	public static final String ADMIN_MANAGEMENT_TAG = "/management/tags/{id}";
+	public static final String ADMIN_MANAGEMENT_USERS = "/management/users";
+	public static final String ADMIN_MANAGEMENT_USER = "/management/users/{id}";
 
 	/********* Google recaptcha ****************/
 	public static final String RECAPTCHA_SITEVERIFY = "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s&remoteip=%s";

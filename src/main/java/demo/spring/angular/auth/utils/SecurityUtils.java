@@ -7,6 +7,8 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import demo.spring.angular.auth.persistence.enums.AuthorityName;
+
 public final class SecurityUtils {
 	
 	private SecurityUtils() {
@@ -33,7 +35,7 @@ public final class SecurityUtils {
 		Authentication authentication = securityContext.getAuthentication();
 		if (Objects.nonNull(authentication)) {
 			return authentication.getAuthorities().stream().noneMatch(
-					grantedAuthority -> grantedAuthority.getAuthority().equals(AuthoritiesConstants.ANONYMOUS));
+					grantedAuthority -> grantedAuthority.getAuthority().equals(AuthorityName.ROLE_ANONYMOUS.name()));
 		}
 		return false;
 	}

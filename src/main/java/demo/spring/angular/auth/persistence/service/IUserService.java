@@ -9,7 +9,9 @@ import org.springframework.mobile.device.Device;
 import demo.spring.angular.auth.persistence.entity.User;
 import demo.spring.angular.auth.web.exception.ServiceException;
 import demo.spring.angular.auth.web.request.SignupRequest;
+import demo.spring.angular.auth.web.request.UserChangePasswordRequest;
 import demo.spring.angular.auth.web.request.UserRequest;
+import demo.spring.angular.auth.web.request.UserUpdateInfoRequest;
 import demo.spring.angular.auth.web.request.UserUpdateRequest;
 import demo.spring.angular.auth.web.response.UserResponse;
 
@@ -26,4 +28,6 @@ public interface IUserService extends IGenericService<User, Long>  {
     void resetNewPassword(String token, String newPassword) throws ServiceException;
     void signUp(SignupRequest signUpRequest, HttpServletRequest httpRequest, Device device) throws ServiceException;
     List<UserResponse> findAllUser() throws ServiceException;
+    void updateProfile(UserUpdateInfoRequest userUpdateInfoRequest, HttpServletRequest httpRequest, Device device) throws ServiceException;
+    void changePassword(UserChangePasswordRequest userChangePasswordRequest, HttpServletRequest httpRequest, Device device) throws ServiceException;
 }

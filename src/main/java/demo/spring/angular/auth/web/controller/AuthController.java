@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,6 +29,7 @@ import demo.spring.angular.auth.web.request.AuthRequest;
 import demo.spring.angular.auth.web.request.SignupRequest;
 import demo.spring.angular.auth.web.response.AuthTokenResponse;
 import demo.spring.angular.auth.web.response.JwtUserResponse;
+import demo.spring.angular.auth.web.response.SignupResponse;
 import demo.spring.angular.auth.web.validation.TokenValid;
 import io.swagger.annotations.Api;
 
@@ -35,7 +37,10 @@ import io.swagger.annotations.Api;
 @RestController
 @RequestMapping(path = URIConstant.AUTH)
 public class AuthController {
-
+	
+	@Value("${google.recaptcha.site-key}")
+	private String siteKey;
+	
 	@Autowired
 	private TokenUtil jwtTokenUtil;
 
@@ -83,6 +88,11 @@ public class AuthController {
 		String refreshedToken = jwtTokenUtil.refreshToken(token);
 		return ResponseEntity.ok().body(new AuthTokenResponse(refreshedToken));
 
+	}
+	
+	@GetMapping(value = URIConstant.SIGN_UP)
+	public ResponseEntity<?> signUp(HttpServletRequest httpRequest, Device device) {
+		return ResponseEntity.ok(new SignupResponse(siteKey));
 	}
 
 	@PostMapping(value = URIConstant.SIGN_UP)

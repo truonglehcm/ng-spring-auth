@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import demo.spring.angular.auth.persistence.entity.Tag;
+import demo.spring.angular.auth.persistence.enums.AuthorityName;
 import demo.spring.angular.auth.persistence.repository.TagRepository;
 import demo.spring.angular.auth.persistence.service.ITagService;
-import demo.spring.angular.auth.utils.AuthoritiesConstants;
 import demo.spring.angular.auth.utils.MessageConstant;
 import demo.spring.angular.auth.utils.SecurityUtils;
 import demo.spring.angular.auth.web.exception.NotFoundException;
@@ -32,7 +32,7 @@ public class TagService extends GenericService<Tag, Long> implements ITagService
 	@Override
 	public TagResponse createTag(TagRequest tagReq) throws ServiceException {
 		try {
-			if(!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+			if(!SecurityUtils.isCurrentUserInRole(AuthorityName.ROLE_ADMIN.name())) {
 				String messageError = messageSource.getMessage(MessageConstant.ACCESS_DENIEL, null, Locale.US);
 				throw new AccessDeniedException(messageError);
 			}
@@ -50,7 +50,7 @@ public class TagService extends GenericService<Tag, Long> implements ITagService
 	@Override
 	public void updateTag(TagRequest tag) throws ServiceException {
 		try {
-			if(!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+			if(!SecurityUtils.isCurrentUserInRole(AuthorityName.ROLE_ADMIN.name())) {
 				String messageError = messageSource.getMessage(MessageConstant.ACCESS_DENIEL, null, Locale.US);
 				throw new AccessDeniedException(messageError);
 			}
@@ -69,7 +69,7 @@ public class TagService extends GenericService<Tag, Long> implements ITagService
 	@Override
 	public void deleteTag(Long id) throws ServiceException {
 		try {
-			if(!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+			if(!SecurityUtils.isCurrentUserInRole(AuthorityName.ROLE_ADMIN.name())) {
 				String messageError = messageSource.getMessage(MessageConstant.ACCESS_DENIEL, null, Locale.US);
 				throw new AccessDeniedException(messageError);
 			}

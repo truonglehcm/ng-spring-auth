@@ -22,8 +22,8 @@ public class JwtUserResponse implements UserDetails {
 	@JsonIgnore
 	private Long id;
 	private String username;
-	private String firstname;
-	private String lastname;
+	private String firstName;
+	private String lastName;
 	@JsonIgnore
 	private String password;
 	private String email;
@@ -31,7 +31,7 @@ public class JwtUserResponse implements UserDetails {
 	private boolean enabled;
 	@JsonIgnore
 	private Date lastPasswordReset;
-
+	
 	@JsonIgnore
 	@Override
 	public boolean isAccountNonExpired() {
@@ -52,9 +52,9 @@ public class JwtUserResponse implements UserDetails {
 	
 	public static class JwtUserBuilder {
 		private Long id;
-		private String username;
-		private String firstname;
-		private String lastname;
+		private String userName;
+		private String firstName;
+		private String lastName;
 		private String password;
 		private String email;
 		private Collection<? extends GrantedAuthority> authorities;
@@ -66,18 +66,18 @@ public class JwtUserResponse implements UserDetails {
             return this;
         }
 
-        public JwtUserBuilder username(String username) {
-            this.username = username;
+        public JwtUserBuilder userName(String userName) {
+            this.userName = userName;
             return this;
         }
         
-        public JwtUserBuilder firstname(String firstname) {
-            this.firstname = firstname;
+        public JwtUserBuilder firstName(String firstName) {
+            this.firstName = firstName;
             return this;
         }
         
-        public JwtUserBuilder lastname(String lastname) {
-            this.lastname = lastname;
+        public JwtUserBuilder lastName(String lastName) {
+            this.lastName = lastName;
             return this;
         }
 
@@ -114,14 +114,13 @@ public class JwtUserResponse implements UserDetails {
 
     private JwtUserResponse(JwtUserBuilder builder) {
     	this.id = builder.id;
-		this.username = builder.username;
-		this.firstname = builder.firstname;
-		this.lastname = builder.lastname;
+		this.username = builder.userName;
+		this.firstName = builder.firstName;
+		this.lastName = builder.lastName;
 		this.email = builder.email;
 		this.password = builder.password;
 		this.authorities = builder.authorities;
 		this.enabled = builder.enabled;
 		this.lastPasswordReset = builder.lastPasswordReset;
     }
-
 }

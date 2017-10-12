@@ -1,6 +1,6 @@
 <div class="container">
   	<div id="loginForm" class="loginForm pmd-z-depth">
-  		<div class="pmd-card card-default pmd-z-depth">
+  		<div class="pmd-card card-default">
 			<div class="login-card">
 		      	<form name="loginForm" role="form" novalidate="novalidate">
 		      		<div class="pmd-card-title card-header-border text-center">
@@ -15,7 +15,7 @@
 			        	<div class="form-group pmd-textfield pmd-textfield-floating-label" 
 			        		ng-class="{'has-error' : loginForm.username.$dirty && loginForm.username.$invalid}">
 			          		<label class="control-label" for="username">Username</label>
-			          		<input name="username" ng-model="username" id="username" maxlength="100" type="text" class="form-control" autocomplete="off" required="required"/>
+			          		<input name="username" ng-model="userName" id="username" maxlength="100" type="text" class="form-control" autocomplete="off" required="required"/>
 			          		<span class="pmd-textfield-focused"></span>
 			          		<div class="help-block" ng-messages="loginForm.username.$error" ng-if="loginForm.username.$dirty">
 			                     <span ng-message="required" >Username is required.</span>
@@ -33,7 +33,7 @@
 		        	</div>
 		        	<div class="pmd-card-footer card-footer-no-border card-footer-p16 text-center">
 	                	<div class="form-group">
-			          		<input type="submit" ng-disabled="loginForm.$invalid" ng-click="login(username, password)" class="btn pmd-ripple-effect btn-primary btn-block" value="Login" />
+			          		<input type="submit" ng-disabled="loginForm.$invalid" ng-click="login(userName, password)" class="btn pmd-ripple-effect btn-primary btn-block" value="Login" />
 			        	</div>
 			        	<div class="form-group">
 			        		<a href ui-sref="resetpassword">Forgot Password</a>

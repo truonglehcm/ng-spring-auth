@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
+import demo.spring.angular.auth.persistence.enums.AuthorityName;
 import demo.spring.angular.auth.web.views.Views;
 
 public final class CommonUtils {
@@ -42,12 +43,12 @@ public final class CommonUtils {
 	public static ObjectWriter getObjectWriter(ObjectMapper mapper) {
 		
 		// ADMIN
-		if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+		if (SecurityUtils.isCurrentUserInRole(AuthorityName.ROLE_ADMIN.name())) {
 			return mapper.writerWithView(Views.Admin.class);
 		} 
 
 		// USER
-		if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.USER)) {
+		if (SecurityUtils.isCurrentUserInRole(AuthorityName.ROLE_USER.name())) {
 			return mapper.writerWithView(Views.User.class);
 		}
 		

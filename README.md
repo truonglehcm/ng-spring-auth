@@ -32,7 +32,7 @@
 
 ##### 3. Regist recaptcha from here: https://www.google.com/recaptcha/intro/ #####
 
-##### 4. Open file <strong>captcha.properties</strong> and change #####
+##### 4. Open file <strong>application-dev.properties</strong> and change #####
     google.recaptcha.site-key=Your site key (from step 3)
     google.recaptcha.secret-key=Your secret key (from step 3)
        
